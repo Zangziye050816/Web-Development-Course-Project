@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="CSS/style.css">
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            /* 头部样式 */
+            header {
+                box-sizing: border-box;
+                width: 100%;
+                height: 70px;
+                padding: 0 100px;
+                color: #fff;
+                background-color: #2f1717;
+                /* flex布局 */
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: relative;
+            }
+
+            /* 头部左侧的span标签往右边空出间距 */
+            .header-left span {
+                margin-right: 20px;
+            }
+
+
+            /* logo大小，根据实际情况设置 */
+            .logo {
+                width: 150px;
+                height: 60px;
+                line-height: 60px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            .logo img {
+                width: 100%;
+                height: 100%;
+                background-size: 100%;
+            }
+
+
+            .container {
+                width: 100%;
+                display: flex;
+            }
+
+            /* 左右各50% */
+            .container > div {
+                width: 50%;
+                height: 1000px;
+            }
+
+            .banner > img {
+                width: 100%;
+                height: 100%;
+            }
+
+            .info {
+                box-sizing: border-box;
+                width: 100%;
+                padding: 50px 50px 0;
+            }
+
+            /* 商品名称 */
+            .info > h1 {
+                font-size: 40px;
+                margin-bottom: 30px;
+            }
+
+            /* 价格 */
+            .info > h2 {
+                font-size: 40px;
+                color: #2f1717;
+                margin-bottom: 30px;
+            }
+
+            /* 数量 */
+            .number {
+                display: flex;
+            }
+
+            /* 加减区域 */
+            .number > div:nth-child(1) {
+                background-color: #F9F6F1;
+            }
+
+            .number > div:nth-child(1) > span {
+                display: inline-block;
+                width: 60px;
+                height: 60px;
+                line-height: 60px;
+                text-align: center;
+            }
+
+            .number > div:nth-child(1) > span:first-child,
+            .number > div:nth-child(1) > span:last-child {
+                cursor: pointer;
+            }
+
+            /* 按钮区域 */
+            .number > div:nth-child(2) > button {
+                border: none;
+                background-color: #e68e46;
+                margin-left: 50px;
+                height: 60px;
+                width: 150px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: bold;
+            }
+
+            /* 类型选择 */
+            .type {
+                width: 100%;
+                margin-top: 50px;
+            }
+
+            /* 类型标题 */
+            .type-title {
+                display: flex;
+            }
+
+            .type-title > span {
+                display: flex;
+                margin-right: 50px;
+                cursor: pointer;
+                font-weight: bold;
+            }
+
+            /* 类型内容区域 */
+            .type-content {
+                width: 100%;
+                margin-top: 30px;
+            }
+
+            .type-content > div {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 20px;
+            }
+
+            .type-content > div > img {
+                width: 48%;
+                height: auto;
+            }
+
+            /* 文字区域 */
+            .type-content > p {
+                width: 100%;
+                word-wrap: break-word;
+                line-height: 1.5;
+            }
+
+            /* 产品 */
+            .product {
+                width: 100%;
+                box-sizing: border-box;
+                padding: 100px 100px 0;
+            }
+
+            /* 标题 */
+            .product > h1 {
+                font-size: 40px;
+                margin-bottom: 50px;
+            }
+
+            .product-list {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .product-list > div {
+                width: 30%;
+            }
+
+            .product-list > div > img {
+                width: 100%;
+                height: auto;
+            }
+
+            .product-list > div > p {
+                margin-top: 30px;
+            }
+
+            .product-list > div > p:last-child {
+                color: #ac4343;
+            }
+
+            a {
+                text-decoration: none;
+                color: white;
+            }
+
+            a1 {
+                text-decoration: none;
+                color: black;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- 头部区域 -->
+        <header>
+            <div class="header-left">
+                <span><a href="zodiac.html"> | back |</a></span>
+
+            </div>
+            <div class="logo">
+                <img src="../picture/logo.jpg" alt="" srcset="">
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="banner">
+                <img src="../picture/loong2.jpg" alt="">
+            </div>
+            <div class="info">
+                <h1>Color matching dopamine | "With Dragons, Spirits Come"</h1>
+                <h2>$17.00</h2>
+                <div class="number">
+                    <div>
+                        <span>-</span>
+                        <span>0</span>
+                        <span>+</span>
+                    </div>
+                    <div>
+                        <button>ADD TO CART</button>
+                    </div>
+                </div>
+                <div class="type">
+                    <div class="type-title">
+                        <span>Description</span>
+                        <span>Additional information</span>
+                        <span>Reviews</span>
+                    </div>
+                    <div class="type-content">
+                        <div>
+                            <img src="../picture/loong1.jpg" alt="" srcset="">
+                            <img src="../picture/made4.png" alt="" srcset="">
+                        </div>
+                        <p style="font-size:15px;font-family:'Times New Roman',sans-serif">
+                            When traditional Paper Cuttings meets the oriental aesthetics of contemporary<br>
+                            Dragon is an animal in ancient Chinese mythology and one of the symbols of the Chinese
+                            nation.
+                        </p>
+                        <p style="display: none;font-family: 'Times New Roman',sans-serif">
+                            Dopamine color system<br>
+                            It is a popular color nowadays, which is bright and lively, creating a sense of joy and
+                            excitement,
+                            My mood instantly became clear.<br>
+                            So we combine traditional Paper Cuttings with contemporary color matching, hang them at home
+                            and decorate them,
+                            Create a vibrant yet elegant and peaceful atmosphere.
+                        </p>
+                        <p style="display: none;font-family: 'Times New Roman',sans-serif">
+                            "With Dragons, Spirits Come"<br>
+                            It was carved by Mr. Zhou Yongsheng, the third generation inheritor of Yuxian Paper Cuttings
+                            intangible cultural heritage
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product">
+            <h1>Related Products</h1>
+            <h1 style="color: #b54d4d">assume you like</h1>
+            <div class="product-list">
+                <div>
+                    <img src="../picture/tiger2.jpg" alt="" srcset="">
+                    <p>LOONG</p>
+                    <p>$17</p>
+                </div>
+                <div>
+                    <img src="../picture/snack1.jpg" alt="" srcset="">
+                    <p>SNAKE</p>
+                    <p>$17</p>
+                </div>
+                <div>
+                    <img src="../picture/horse.jpg" alt="" srcset="">
+                    <p>HORSE</p>
+                    <p>$17</p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+                // 获取元素
+                const quantitySpan = document.querySelector('.number span:nth-child(2)');
+                const addToCartButton = document.querySelector('.number button');
+                const increaseButton = document.querySelector('.number span:last-child');
+                const decreaseButton = document.querySelector('.number span:first-child');
+                const typeSpans = document.querySelectorAll('.type-title span');
+                const typeContents = document.querySelectorAll('.type-content p');
+
+                // 初始化数量
+                let quantity = 0;
+
+                // 更新数量显示
+                function updateQuantity() {
+                    quantitySpan.textContent = quantity;
+                }
+
+                // 增加数量
+                function increaseQuantity() {
+                    quantity++;
+                    updateQuantity();
+                }
+
+                // 减少数量
+                function decreaseQuantity() {
+                    if (quantity > 0) {
+                        quantity--;
+                        updateQuantity();
+                    }
+                }
+
+                // 绑定事件
+                addToCartButton.addEventListener('click', increaseQuantity);
+                increaseButton.addEventListener('click', increaseQuantity);
+                decreaseButton.addEventListener('click', decreaseQuantity);
+
+                // 类型切换功能
+                typeSpans.forEach((span, index) => {
+                    span.addEventListener('click', () => {
+                        // 重置所有span颜色
+                        typeSpans.forEach(s => s.style.color = '');
+                        // 重置所有p标签显示
+                        typeContents.forEach(p => p.style.display = 'none');
+
+                        // 设置当前span颜色
+                        span.style.color = '#2f504c';
+                        // 显示对应的p标签
+                        if (index < typeContents.length) {
+                            typeContents[index].style.display = 'block';
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>

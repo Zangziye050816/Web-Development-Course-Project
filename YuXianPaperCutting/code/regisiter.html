@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        accent: '#6366F1',
+                        neutral:'#ffffff',
+                        dark: '#1F2937'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .form-input-focus {
+                @apply focus:ring-2 focus:ring-primary/50 focus:border-primary transition duration-300;
+            }
+            .btn-hover {
+                @apply hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300;
+            }
+            .card-effect {
+                @apply hover:shadow-xl hover:-translate-y-1 transition-all duration-500;
+            }
+        }
+
+        * {
+                padding: 0;
+                margin: 0;
+            }
+
+            body {
+                width: 100%;
+                height: 100vh;
+                background-image: url("../picture/background.png");
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+
+            header {
+                background-image: url("../picture/brandCulture.png");
+                background-size: cover;
+                padding: 35px 0;
+                text-align: left;
+                font-size: 17px;
+                color: #ffffff;
+            }
+
+            nav {
+                display: flex;
+                background-color: rgba(16, 16, 16, 0.65);
+                overflow: hidden;
+                justify-content: center;
+            }
+
+            nav a {
+                display: inline-block;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 12px 60px;
+                text-decoration: none;
+                font-size: 20px;
+            }
+
+            nav a:hover {
+                background-color: #ffffff;
+                color: black;
+            }
+            .a {
+                margin-left: 50px;
+                color: #f0f0f0;
+            }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-neutral to-white min-h-screen font-inter text-dark">
+   <!-- 背景图片 -->
+  <header>
+            <h1 class="a">Yuxian Paper Cuttings | "Great Craftsman"</h1>
+        </header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="joinUs.html">Join US</a>
+        </nav>
+    <div class="container mx-auto px-4 py-12 max-w-5xl">
+
+
+        <!-- 主内容区 -->
+        <main class="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div class="md:flex">
+                <!-- 左侧图片区 -->
+                <div class="md:w-2/5 bg-gradient-to-br from-primary to-accent p-8 text-white flex items-center justify-center">
+                    <div class="text-center">
+                        <div class="w-24 h-24 mx-auto mb-6 rounded-full bg-white/20 flex items-center justify-center">
+                            <i class="fa-solid fa-user-circle text-white text-4xl"></i>
+                        </div>
+                        <h2 class="text-[clamp(1.25rem,2vw,1.75rem)] font-bold mb-4">欢迎注册</h2>
+                        <p class="opacity-90">填写下方表单，加入我们的大家庭</p>
+                        <div class="mt-8 space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <i class="fa-solid fa-shield-check text-white/80"></i>
+                                <span class="text-sm">信息安全有保障</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fa-solid fa-lock text-white/80"></i>
+                                <span class="text-sm">数据严格加密</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fa-solid fa-comments text-white/80"></i>
+                                <span class="text-sm">专业客服支持</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右侧表单区 -->
+                <div class="md:w-3/5 p-8">
+                    <h2 class="text-2xl font-bold mb-6">填写注册信息</h2>
+                    <form id="registrationForm" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label for="name" class="block text-sm font-medium text-gray-700">姓名</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+                                        <i class="fa-solid fa-user"></i>
+                                    </span>
+                                    <input type="text" id="name" name="name" required
+                                        class="w-full pl-10 pr-3 py-3 rounded-lg border border-gray-300 form-input-focus outline-none"
+                                        placeholder="请输入您的姓名">
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label for="email" class="block text-sm font-medium text-gray-700">邮箱</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </span>
+                                    <input type="email" id="email" name="email" required
+                                        class="w-full pl-10 pr-3 py-3 rounded-lg border border-gray-300 form-input-focus outline-none"
+                                        placeholder="请输入您的邮箱">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label for="phone" class="block text-sm font-medium text-gray-700">电话号码</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+                                    <i class="fa-solid fa-phone"></i>
+                                </span>
+                                <input type="tel" id="phone" name="phone" required
+                                    class="w-full pl-10 pr-3 py-3 rounded-lg border border-gray-300 form-input-focus outline-none"
+                                    placeholder="请输入您的电话号码">
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label for="birthdate" class="block text-sm font-medium text-gray-700">出生年月</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+                                    <i class="fa-solid fa-calendar"></i>
+                                </span>
+                                <input type="date" id="birthdate" name="birthdate" required
+                                    class="w-full pl-10 pr-3 py-3 rounded-lg border border-gray-300 form-input-focus outline-none">
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label for="address" class="block text-sm font-medium text-gray-700">地址</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </span>
+                                <input type="text" id="address" name="address"
+                                    class="w-full pl-10 pr-3 py-3 rounded-lg border border-gray-300 form-input-focus outline-none"
+                                    placeholder="请输入您的地址（选填）">
+                            </div>
+                        </div>
+
+                        <div class="pt-4">
+                            <button type="submit" id="registerBtn"
+                                class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-lg btn-hover flex items-center justify-center">
+                                <i class="fa-solid fa-user-plus mr-2"></i>
+                                立即注册
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <!-- 页脚 -->
+        <footer class="mt-12 text-center text-gray-500 text-sm">
+            <p>© 2025 用户注册系统. 保留所有权利.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('registrationForm');
+            const registerBtn = document.getElementById('registerBtn');
+
+            // 添加按钮加载状态
+            registerBtn.addEventListener('click', function() {
+                if (form.checkValidity()) {
+                    registerBtn.disabled = true;
+                    registerBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> 注册中...';
+
+                    // 模拟API调用延迟
+                    setTimeout(function() {
+                        // 获取现有注册数据
+                        let registrations = JSON.parse(localStorage.getItem('registrations') || '[]');
+
+                        // 从表单获取数据
+                        const formData = new FormData(form);
+                        const newRegistration = Object.fromEntries(formData.entries());
+                        newRegistration.timestamp = new Date().toISOString();
+
+                        // 添加新注册数据
+                        registrations.push(newRegistration);
+
+                        // 保存到localStorage
+                        localStorage.setItem('registrations', JSON.stringify(registrations));
+
+                        // 重置按钮状态
+                        registerBtn.disabled = false;
+                        registerBtn.innerHTML = '<i class="fa-solid fa-user-plus mr-2"></i> 立即注册';
+
+                        // 显示成功消息并跳转
+                        showSuccessToast();
+                        setTimeout(() => {
+                            window.location.href = 'statistics.html';
+                        }, 1500);
+                    }, 1000);
+                }
+            });
+
+            // 成功提示框
+            function showSuccessToast() {
+                const toast = document.createElement('div');
+                toast.className = 'fixed bottom-4 right-4 bg-secondary text-white px-6 py-3 rounded-lg shadow-lg z-50 transform transition-all duration-500 translate-y-20 opacity-0';
+                toast.innerHTML = '<i class="fa-solid fa-check-circle mr-2"></i> 注册成功！正在跳转到统计页面...';
+                document.body.appendChild(toast);
+
+                // 显示提示框
+                setTimeout(() => {
+                    toast.classList.remove('translate-y-20', 'opacity-0');
+                }, 100);
+
+                // 自动关闭
+                setTimeout(() => {
+                    toast.classList.add('translate-y-20', 'opacity-0');
+                    setTimeout(() => {
+                        document.body.removeChild(toast);
+                    }, 500);
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>

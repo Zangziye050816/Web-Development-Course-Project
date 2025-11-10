@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/style3.css">
+    <title>register page</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            background-image: url("../picture/background.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .firstMenu {
+            background: #2f1717;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            font-family: Arial, sans-serif;
+            padding: 0px 10px;
+        }
+
+        .firstMenu .menu-one {
+            display: flex;
+            list-style: none;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 0 5px;
+        }
+
+        .firstMenu .menu-one li.menu {
+            margin: -4px 0;
+        }
+
+        .firstMenu .menu-one li.menu a {
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .firstMenu .menu-one li.menu a:hover {
+            color: #e3ceb0;
+        }
+
+        .firstMenu .menu-one li.menu img {
+            height: 60px;
+            width: 120px;
+        }
+
+        .mobile-menu {
+            display: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .menu-icon {
+            display: block;
+            width: 35px;
+            height: 3px;
+            background-color: white;
+            margin: 0 0;
+            transition: 0.4s;
+        }
+
+        @media (max-width: 768px) {
+            .firstMenu .menu-one {
+                justify-content: space-between;
+                align-items: center;
+                padding: 15px 20px;
+            }
+
+            .firstMenu .menu-one .menu {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .firstMenu.responsive .menu-one .menu {
+                display: block;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: rgba(0,0,0,0.9);
+                text-align: center;
+                padding: 20px 0;
+            }
+
+            .firstMenu.responsive .menu-one li.menu {
+                margin: 15px 0;
+            }
+        }
+
+        /* 注册页面原有样式 */
+         .banner {
+            height: 300px;
+            width: 100%;
+            background-image: url("../picture/background.png");
+            background-size: 100%;
+        }
+
+        .registration-form {
+            margin-top: 100px;
+            margin-left: 250px;
+            background-color: rgba(35, 19, 1, 0.65);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 700px;
+            color: #f0f0f0;
+        }
+
+        .registration-form h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .registration-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .registration-form input[type="text"],
+        .registration-form input[type="email"],
+        .registration-form input[type="password"] {
+            width: calc(100% - 12px);
+            padding: 6px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .registration-form input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: rgb(94, 23, 23);
+            color: #ffffff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .registration-form input[type="submit"]:hover {
+            background-color: rgb(227, 206, 176);
+        }
+
+        .a {
+            margin-left: 50px;
+            color: #f0f0f0;
+        }
+
+        .password-match {
+            color: #e3ceb0;
+            display: none;
+        }
+
+        .password-mismatch {
+            color: #f44336;
+            display: none;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        /* 响应式布局 */
+        @media (max-width: 768px) {
+            .registration-form {
+                margin-left: 20px;
+                width: calc(100% - 40px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部区域 -->
+    <header>
+        <div class="firstMenu" id="mainMenu">
+            <div class="mobile-menu" id="mobileMenu">
+                <div class="menu-icon" onclick="toggleMenu()">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+            </div>
+            <ul class="menu-one">
+                <li class="menu">
+                    <img style="" src="../picture/logo.jpg" height="60" width="120"/>
+                </li>
+                <li class="menu">
+                    <a style="color: white;font-size: 20px" href="brandCulture.html">Brand</a>
+                </li>
+                <li class="menu">
+                    <a style="color: white;font-size: 20px" href="product.html">Product</a>
+                </li>
+                <li class="menu">
+                    <a style="color: white;font-size: 20px" href="joinUs.html">JoinUs</a>
+                </li>
+                <li class="menu">
+                    <a style="color: white;font-size: 20px" href="aboutUs.html">AboutUs</a>
+                </li>
+                <li class="menu">
+                    <a style="color: white;font-size: 20px" href="index.html">Home</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!-- banner区域 -->
+    <div class="banner">
+        <div>Do you want to<br>Join Us?
+            <div>we are the young who want to protect the heritage</div>
+        </div>
+    </div>
+    <form class="registration-form" id="registerForm" action="#" method="post">
+        <h2>WELCOME TO<br> "Great Craftsman"</h2>
+
+        <div class="form-group">
+            <label for="username">USER name</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">EMAIL</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">PASSWORD:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <div class="form-group">
+            <label for="confirm_password">CONFIRM PASSWORD:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+            <div id="passwordMatch" class="password-match">Passwords match</div>
+            <div id="passwordMismatch" class="password-mismatch">Passwords do not match</div>
+        </div>
+
+        <input type="submit" value="submit">
+    </form>
+
+
+    <script>
+          // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('mainMenu');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        // 移动端菜单切换
+        function toggleMenu() {
+            const menu = document.getElementById('mainMenu');
+            menu.classList.toggle('responsive');
+
+            const icon = document.querySelector('.menu-icon');
+            icon.classList.toggle('change');
+        }
+
+        // 导航栏激活状态
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.menu-one a');
+
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPath || link.getAttribute('href') === '/joinUs.html') { // 当前页面是注册页，对应JoinUs链接
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // 密码一致性验证
+        const password = document.getElementById('password');
+        const confirmPassword = document.getElementById('confirm_password');
+        const passwordMatch = document.getElementById('passwordMatch');
+        const passwordMismatch = document.getElementById('passwordMismatch');
+
+        function validatePassword() {
+            if (password.value === confirmPassword.value) {
+                confirmPassword.setCustomValidity('');
+                passwordMatch.style.display = 'block';
+                passwordMismatch.style.display = 'none';
+            } else {
+                confirmPassword.setCustomValidity('Passwords do not match');
+                passwordMatch.style.display = 'none';
+                passwordMismatch.style.display = 'block';
+            }
+        }
+
+        password.addEventListener('input', validatePassword);
+        confirmPassword.addEventListener('input', validatePassword);
+
+        // 表单提交处理
+        const form = document.getElementById('registerForm');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // 阻止默认提交行为
+
+            // 模拟表单提交
+            const submitBtn = form.querySelector('input[type="submit"]');
+            const originalText = submitBtn.value;
+
+            // 显示加载状态
+            submitBtn.value = 'Submitting...';
+            submitBtn.disabled = true;
+
+
+            setTimeout(() => {
+                alert('Registration successful! Redirecting to home page...');
+                form.reset();
+                submitBtn.value = originalText;
+                submitBtn.disabled = false;
+                passwordMatch.style.display = 'none';
+                passwordMismatch.style.display = 'none';
+                window.location.href = 'index.html';
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

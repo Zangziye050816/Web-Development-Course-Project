@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Culture | Yuxian Paper Cuttings</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #FBF8F3;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            opacity: 1;
+            transition: opacity 0.5s ease; /* 页面加载动画 */
+        }
+
+        body.loading {
+            opacity: 0; /* 页面加载时的初始透明度 */
+        }
+
+        /* 导航栏样式 */
+        header {
+            background-color: #2f1717;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 200;
+        }
+
+        .logo {
+            height: 60px;
+        }
+
+        .logo img {
+            height: 100%;
+            width: auto;
+        }
+
+        .nav {
+            background-color: #2f1717;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-around;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease; /* 导航栏滚动动画 */
+        }
+
+        /* 固定导航栏样式 */
+        .nav.fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 300;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 移动端导航样式 */
+        .menu-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none; /* 桌面端隐藏 */
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            position: relative;
+        }
+
+        .nav a:hover,
+        .nav a:focus {
+            background-color: rgba(255, 255, 255, 0.1);
+            outline: none;
+        }
+
+        .nav a.active {
+            color: #e3ceb0; /* 导航高亮颜色 */
+            font-weight: bold;
+        }
+
+        /* 横幅样式 */
+        .banner {
+            position: relative;
+            height: 50vh;
+            min-height: 300px;
+            overflow: hidden;
+        }
+
+        .banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 标题样式 */
+        .banner h1 {
+            position: absolute;
+            margin-left: 600px;
+            margin-top: 200px;
+            color: #1e1f22;
+            background-color: rgba(255,255,255,0.75);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        /* 二级横幅样式 */
+        .sub-banner {
+            width: 100%;
+            height: auto;
+            margin-top: 2rem;
+            overflow: hidden;
+        }
+
+        .sub-banner img {
+            width: 100%;
+            height: auto;
+            max-height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease; /* 视差动画基础 */
+        }
+
+        /* 文化板块样式 */
+        .content {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .culture-blocks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            padding: 0 1rem;
+        }
+
+        .culture-block {
+            position: relative;
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0; /* 淡入动画初始状态 */
+            transform: translateY(20px);
+        }
+
+        .culture-block.fade-in {
+            opacity: 1; /* 滚动时淡入 */
+            transform: translateY(0);
+        }
+
+        .culture-block:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .culture-block.clicked {
+            transform: scale(0.98); /* 点击缩放效果 */
+        }
+
+        .culture-block img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .culture-block .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: height 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+        }
+
+        /* 响应式布局 */
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem;
+            }
+
+            .menu-button {
+                display: block;
+                margin-bottom: 1rem;
+                align-self: flex-end;
+            }
+
+            .nav a {
+                display: none;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav a.show {
+                display: block;
+                margin: 0.5rem 0;
+            }
+
+            .banner h1 {
+                margin-left: 20px;
+                margin-top: 100px;
+                font-size: 1.2rem;
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="loading">
+    <!-- 头部导航 -->
+    <header>
+        <div class="header-left"></div>
+        <div class="logo">
+            <img src="../picture/logo.jpg" alt="Yuxian Paper Cuttings Logo" />
+        </div>
+        <div class="header-right"></div>
+    </header>
+
+    <!-- 横幅 -->
+    <div class="banner">
+        <img src="../picture/head.png" alt="Yuxian Paper Cuttings Banner" />
+        <h1><strong>YuXian Paper cutting |</strong> Folk Pointillism from Hebei</h1>
+    </div>
+
+    <!-- 导航菜单 -->
+    <div class="nav" id="nav">
+        <button class="menu-button" aria-label="Toggle menu"><i class="fa fa-bars"></i></button>
+        <a href="#banner" class="active">Brand Culture</a>
+        <a href="product.html">Product Introduction</a>
+        <a href="joinUs.html">Join US</a>
+        <a href="aboutUs.html">About US</a>
+        <a href="index.html">Home</a>
+    </div>
+
+    <!-- 二级横幅 -->
+    <div class="sub-banner">
+        <img src="../picture/banner6.jpg" alt="Yuxian Paper Cutting Art" data-src="../picture/banner6.jpg" loading="lazy">
+    </div>
+
+    <!-- 文化板块 -->
+    <div class="content">
+        <div class="culture-blocks">
+            <a href="origin.html" class="culture-block" data-description="Discover the historical origin of Yuxian paper cutting">
+                <img src="../picture/origin.png" alt="Origin of Yuxian Paper Cutting" data-src="../picture/origin.png" loading="lazy">
+                <div class="overlay">Origin</div>
+            </a>
+            <a href="made.html" class="culture-block" data-description="Learn about the traditional craftsmanship process">
+                <img src="../picture/made.png" alt="Creation Process" data-src="../picture/made.png" loading="lazy">
+                <div class="overlay">Creation</div>
+            </a>
+            <a href="artStyle.html" class="culture-block" data-description="Explore the unique artistic style of Yuxian paper cutting">
+                <img src="../picture/artStyle.png" alt="Art Style" data-src="../picture/artStyle.png" loading="lazy">
+                <div class="overlay">Art Style</div>
+            </a>
+            <a href="aboutUs.html" class="culture-block" data-description="Understand the social impact and inheritance status">
+                <img src="../picture/social.png" alt="Social Influence" data-src="../picture/social.png" loading="lazy">
+                <div class="overlay">Social Impact</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- JavaScript代码 -->
+    <script>
+        // 页面加载动画
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.remove('loading');
+        });
+
+        // 2. 导航栏功能
+        const nav = document.getElementById('nav');
+        const menuButton = document.querySelector('.menu-button');
+        const navLinks = document.querySelectorAll('.nav a');
+        let lastScrollTop = 0;
+
+        // 移动端菜单切换
+        function toggleMenu() {
+            nav.classList.toggle('mobile-active');
+            navLinks.forEach(link => {
+                link.classList.toggle('show');
+            });
+            menuButton.classList.toggle('fa-bars');
+            menuButton.classList.toggle('fa-times');
+        }
+
+        menuButton.addEventListener('click', toggleMenu);
+
+        // 固定导航栏 & 滚动动画
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const headerHeight = header.offsetHeight;
+
+            // 固定导航栏
+            if (scrollTop > headerHeight) {
+                nav.classList.add('fixed');
+                document.body.style.paddingTop = `${headerHeight}px`;
+            } else {
+                nav.classList.remove('fixed');
+                document.body.style.paddingTop = '0';
+            }
+
+            // 导航栏显示/隐藏动画
+            if (scrollTop > lastScrollTop && scrollTop > 500) {
+                nav.style.transform = 'translateY(-100%)';
+            } else {
+                nav.style.transform = 'translateY(0)';
+            }
+            lastScrollTop = scrollTop;
+        });
+
+
+        // 3.2 滚动时导航高亮
+        const sections = document.querySelectorAll('section, .banner');
+        function updateActiveLink() {
+            const scrollY = window.scrollY + 80; // 偏移量适配固定导航栏
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionBottom = sectionTop + section.clientHeight;
+
+                if (scrollY >= sectionTop && scrollY < sectionBottom) {
+                    const link = document.querySelector(`a[href="#${section.id}"]`);
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    if (link) link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveLink);
+        updateActiveLink();
+
+        // 滚动淡入动画
+        const fadeElements = document.querySelectorAll('.culture-block');
+        function checkFade() {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (elementTop < windowHeight - 150) {
+                    element.classList.add('fade-in');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkFade);
+        checkFade();
+
+
+        // 文化板块交互
+        const cultureBlocks = document.querySelectorAll('.culture-block');
+        cultureBlocks.forEach(block => {
+            // 点击动画
+            block.addEventListener('click', () => {
+                block.classList.add('clicked');
+                setTimeout(() => block.classList.remove('clicked'), 200);
+            });
+
+            //悬停显示描述
+            let timeoutId;
+            block.addEventListener('mouseenter', () => {
+                timeoutId = setTimeout(() => {
+                    const desc = block.dataset.description;
+                    if (desc) {
+                        const overlay = block.querySelector('.overlay');
+                        const descElement = document.createElement('p');
+                        descElement.className = 'desc';
+                        descElement.textContent = desc;
+                        descElement.style.fontSize = '0.9rem';
+                        descElement.style.color = '#f4dcc4';
+                        overlay.appendChild(descElement);
+                    }
+                }, 300);
+            });
+
+            block.addEventListener('mouseleave', () => {
+                clearTimeout(timeoutId);
+                const descElement = block.querySelector('.desc');
+                if (descElement) descElement.remove();
+            });
+        });
+
+        // 二级横幅视差效果
+        const subBannerImg = document.querySelector('.sub-banner img');
+        window.addEventListener('scroll', () => {
+            if (subBannerImg) {
+                const scrollY = window.scrollY;
+                subBannerImg.style.transform = `translateY(${scrollY * 0.2}px)`;
+            }
+        });
+    </script>
+</body>
+</html>

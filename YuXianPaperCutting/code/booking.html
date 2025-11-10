@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exhibition Reservation</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/style3.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 新增预约表单样式 */
+        .reservation-container {
+            position: relative;
+            min-height: 800px;
+            background-image: url("../picture/exhibition1.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 20px;
+        }
+
+        .reservation-form {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .form-title {
+            color: #8a3131;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #8a3131;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            border-color: #8a3131;
+        }
+
+        .date-select {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+        .date-btn {
+            flex-basis: 48%;
+            padding: 15px;
+            background-color: #b89797;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .date-btn:hover {
+            background-color: #9c6060;
+        }
+
+        .date-btn.active {
+            background-color: #713d3d;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background-color: #602727;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.3em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 30px;
+        }
+
+        .submit-btn:hover {
+            background-color: #ae8181;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .reservation-form {
+                padding: 30px 20px;
+            }
+
+            .form-title {
+                font-size: 2em;
+            }
+
+            .date-select {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .date-btn {
+                flex-basis: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 继承原有头部导航 -->
+    <header>
+        <div class="firstMenu" id="mainMenu">
+            <div class="mobile-menu" id="mobileMenu">
+                <div class="menu-icon" onclick="toggleMenu()">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+            </div>
+            <ul class="menu-one">
+                <li class="menu">
+                    <img style="" src="../picture/logo.jpg" height="60" width="120"/>
+                </li>
+                <li class="menu">
+                    <a style="color: white;font-size: 20px" href="brandCulture.html">Brand</a>
+                </li>
+                <li class="menu">
+                    <a style="color: white;font-size: 20px" href="product.html">Product</a>
+                </li>
+                <li class="menu">
+                    <a style="color: white;font-size: 20px" href="joinUs.html">JoinUs</a>
+                </li>
+                <li class="menu">
+                    <a style="color: white;font-size: 20px" href="aboutUs.html">AboutUs</a>
+                </li>
+                <li class="menu">
+                    <a style="color: white;font-size: 20px" href="index.html">Home</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- 预约表单区域 -->
+    <div class="reservation-container">
+        <form class="reservation-form" id="reservationForm" method="POST" action="/api/submit-reservation">
+            <h2 class="form-title">Exhibition Reservation</h2>
+
+            <div class="form-group">
+                <label class="form-label" for="name">Full Name</label>
+                <input type="text" class="form-input" id="name" name="name" required placeholder="Please enter your full name">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="idCard">ID Card Number</label>
+                <input type="text" class="form-input" id="idCard" name="idCard" required placeholder="Please enter your 18-digit ID number">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Select Exhibition Date</label>
+                <div class="date-select">
+                    <button type="button" class="date-btn active" data-date="day1">
+                        Day 1 (2025-06-15)
+                    </button>
+                    <button type="button" class="date-btn" data-date="day2">
+                        Day 2 (2025-06-16)
+                    </button>
+                </div>
+                <input type="hidden" id="exhibitionDate" name="exhibitionDate" value="day1">
+            </div>
+
+            <button type="submit" class="submit-btn" onclick="window.location.href='index.html'">Submit Reservation</button>
+        </form>
+    </div>
+
+    <!-- 继承原有JavaScript交互 -->
+    <script src="js/nav.js"></script> <!-- 导航栏交互脚本 -->
+    <script>
+        // 日期选择交互
+        const dateBtns = document.querySelectorAll('.date-btn');
+        dateBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                dateBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById('exhibitionDate').value = btn.dataset.date;
+            });
+        });
+
+        // 表单提交逻辑（示例）
+        const form = document.getElementById('reservationForm');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // 构造表单数据
+            const formData = new FormData(form);
+
+        });
+    </script>
+</body>
+</html>

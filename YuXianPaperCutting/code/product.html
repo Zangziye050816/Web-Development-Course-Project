@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Introduction</title>
+    <style>
+        /* 全局样式 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+          background-color: #FBF8F3FF;
+        }
+
+        /* 导航栏样式 */
+        .firstMenu {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 0rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background-color: #2f1717; /* 恢复原始黑色背景 */
+            transition: background-color 0.3s, box-shadow 0.3s;
+            height: 50px; /* 固定宽度 */
+            margin: 0 auto; /* 居中显示 */
+        }
+
+        .firstMenu.scrolled {
+            background-color: rgba(47, 23, 23, 0.75);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+
+        }
+
+        .menu-one {
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu {
+            margin: 0 15px;
+        }
+
+        .menu a {
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            transition: color 0.2s, transform 0.2s;
+            display: inline-block;
+        }
+
+        .menu a:hover {
+            color: #e3ceb0;
+        }
+
+        .menu a.clicked {
+            color: #e3ceb0 !important;
+            transform: scale(1.05);
+        }
+
+        /* 横幅样式 */
+        .banner {
+            height: 350px;
+            width: 100%;
+            background-image: url("../picture/product.png");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .banner div:first-child {
+          font-family: "Sitka Text", sans-serif;
+                font-weight: bolder;
+                position: absolute;
+                top: 130px;
+                left: 220px;
+                color: rgb(255, 255, 255);
+                font-size: 60px;
+        }
+
+        .banner div:last-child {
+                font-family: "Sitka Text", sans-serif;
+                font-size: 20px;
+                margin-left: -220px;
+        }
+
+        /* 产品分类标题 */
+        .p {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 50px;
+            color: #1b0101;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .p.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 产品容器 */
+        .container {
+            padding: 10px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        /* 产品卡片 */
+        .block {
+            font-weight: bolder;
+            width: 300px;
+            height: 400px;
+            margin: 30px;
+            display: inline-block;
+            color: #ffffff;
+            text-decoration: none;
+            text-align: center;
+            line-height: 200px;
+            font-size: 1.5em;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .block.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .block:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact1 { background-image: url("../picture/journeyToTheWest.png"); }
+        .contact2 { background-image: url("../picture/newYear.jpg"); }
+        .contact3 { background-image: url("../picture/zodiac.jpg"); }
+        .contact4 { background-image: url("../picture/blogger2.jpg"); }
+        .contact5 { background-image: url("../picture/blogger1.jpg"); }
+
+        /* 产品卡片信息层 */
+        .block-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .block:hover .block-info {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 移动端菜单按钮 */
+        .menu-toggle {
+            display: none;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        /* 返回顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 100;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* 页面加载进度条 */
+        .page-progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: #ffcc00;
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.2s ease;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="firstMenu">
+            <ul class="menu-one">
+                <li class="menu">
+                    <img src="../picture/logo.jpg" height="60" width="120" alt="YuXian Paper Cutting Logo"/>
+                </li>
+                <li class="menu">
+                    <a href="brandCulture.html">Brand</a>
+                </li>
+                <li class="menu">
+                    <a href="product.html">Product</a>
+                </li>
+                <li class="menu">
+                    <a href="joinUs.html">Join Us</a>
+                </li>
+                <li class="menu">
+                    <a href="aboutUs.html">About Us</a>
+                </li>
+                <li class="menu">
+                    <a href="index.html">Home</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="banner">
+        <div>YuXian Paper Cutting</div>
+        <div>you can get what you want</div>
+    </div>
+
+    <p class="p">|Traditional Style|</p>
+    <div class="container">
+        <a href="journeyToTheWest.html" class="block contact1"></a>
+        <a href="newYearSpecialEdtion.html" class="block contact2"></a>
+        <a href="zodiac.html" class="block contact3"></a>
+    </div>
+
+    <p class="p">|Intangible Cultural Heritage Reimagined|</p>
+    <div class="container">
+        <a href="blogger2.html" class="block contact4"></a>
+        <a href="blogger1.html" class="block contact5"></a>
+    </div>
+
+    <button class="back-to-top" aria-label="Back to top">
+        <span style="font-size: 18px; line-height: 1">&uarr;</span>
+    </button>
+
+    <script>
+          // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('mainMenu');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 产品卡片依次淡入
+            const blocks = document.querySelectorAll('.block');
+            blocks.forEach((block, index) => {
+                setTimeout(() => {
+                    block.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    block.classList.add('animate-in');
+                }, 100 * index);
+            });
+
+            // 滚动触发动画
+            const observerOptions = { threshold: 0.1 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.block, .p').forEach(el => {
+                observer.observe(el);
+            });
+
+            // 导航栏滚动效果
+            const navbar = document.querySelector('.firstMenu');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // 导航链接点击效果
+            document.querySelectorAll('.menu a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    this.classList.add('clicked');
+                    setTimeout(() => this.classList.remove('clicked'), 300);
+
+                    if (this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        document.querySelector(targetId)?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // 产品卡片悬停信息层
+            document.querySelectorAll('.block').forEach(block => {
+                const productType = block.classList.contains('contact1') ? 'Journey to the West Series' :
+                                    block.classList.contains('contact2') ? 'Chinese New Year Special' :
+                                    block.classList.contains('contact3') ? 'Zodiac Collection' :
+                                    block.classList.contains('contact4') ? 'Modern Intangible Heritage' : 'Traditional Intangible Heritage';
+
+                const infoDiv = document.createElement('div');
+                infoDiv.className = 'block-info';
+                infoDiv.textContent = productType;
+                block.appendChild(infoDiv);
+            });
+
+            // 移动端汉堡菜单
+            const menuToggle = document.createElement('div');
+            menuToggle.className = 'menu-toggle';
+            menuToggle.innerHTML = '&#9776;'; // 汉堡菜单图标
+            document.querySelector('header').appendChild(menuToggle);
+
+            function handleResize() {
+                const menuItems = document.querySelector('.menu-one');
+                if (window.innerWidth < 768) {
+                    menuToggle.style.display = 'block';
+                    menuItems.style.display = 'none';
+                    menuItems.style.position = 'fixed';
+                    menuItems.style.top = '0';
+                    menuItems.style.left = '0';
+                    menuItems.style.width = '100%';
+                    menuItems.style.height = '100vh';
+                    menuItems.style.background = 'rgba(0,0,0,0.95)';
+                    menuItems.style.flexDirection = 'column';
+                    menuItems.style.justifyContent = 'center';
+                    menuItems.style.alignItems = 'center';
+                    menuItems.style.zIndex = '999';
+
+                    document.querySelectorAll('.menu').forEach(menu => {
+                        menu.style.margin = '20px 0';
+                    });
+                } else {
+                    menuToggle.style.display = 'none';
+                    menuItems.style.display = 'flex';
+                    menuItems.style.position = 'static';
+                    menuItems.style.width = 'auto';
+                    menuItems.style.height = 'auto';
+                    menuItems.style.background = 'transparent';
+                }
+            }
+
+            window.addEventListener('resize', handleResize);
+            handleResize();
+
+            menuToggle.addEventListener('click', function() {
+                const menuItems = document.querySelector('.menu-one');
+                menuItems.style.display = menuItems.style.display === 'none' ? 'flex' : 'none';
+            });
+
+            document.querySelectorAll('.menu a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth < 768) {
+                        document.querySelector('.menu-one').style.display = 'none';
+                    }
+                });
+            });
+
+            // 返回顶部
+            const backToTopButton = document.querySelector('.back-to-top');
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>

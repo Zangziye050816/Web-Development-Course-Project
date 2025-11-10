@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JIXIANG Studio</title>
+        <link rel="stylesheet" href="CSS/style.css">
+        <link rel="stylesheet" href="CSS/style2.css">
+        <style>
+           .banner {
+                height: 300px;
+                width: 100%;
+                background-image: url("../picture/banner1.png");
+                background-size: 100%;
+
+            }
+            .banner div {
+                font-family: "Sitka Text", sans-serif;
+                font-weight: bolder;
+                position: absolute;
+                top: 180px;
+                left: 220px;
+                color: rgb(4, 0, 0);
+                font-size: 80px;
+            }
+
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                margin-top: 20px;
+                line-height: 2.5;
+            }
+
+            td {
+                border: none;
+                vertical-align: top;
+                padding: 30px;
+                margin-left: 10px;
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .container {
+                text-align: center;
+                margin-top: 0px;
+            }
+
+            .block {
+                font-family: "方正姚体", sans-serif;
+                font-weight: bolder;
+                width: 300px;
+                height: 400px;
+                margin: 30px;
+                display: inline-block;
+                color: #ffffff;
+                text-decoration: none;
+                text-align: center;
+                line-height: 200px;
+                font-size: 1.5em;
+                border-radius: 10px;
+                transition: transform 0.3s;
+            }
+
+
+            .block:hover {
+                transform: scale(1.1);
+            }
+
+            .contact1 {
+                background-image: url("../picture/work1.png");
+                background-size: 100%;
+            }
+
+            .contact2 {
+                background-image: url("../picture/work2.png");
+                background-size: 100%;
+
+            }
+
+            .contact3 {
+                background-image: url("../picture/work3.png");
+                background-size: 100%;
+            }
+
+            .container a {
+                background-color: #371313;
+                text-decoration: none;
+                color: #3e1515;
+                padding: 10px;
+                border-radius: 8px;
+                cursor: pointer;
+                box-shadow: 10px 10px 10px #391515;
+            }
+
+            .container a:hover {
+                filter: drop-shadow(5px 5px #222222);
+            }
+
+            .intro {
+                position: relative;
+                margin: 60px 200px 50px 200px;
+                text-align: center;
+                font-size: 15px;
+                font-family: "Times New Roman", sans-serif;
+                color: rgb(51, 51, 66);
+            }
+
+            .img {
+                position: relative;
+                margin-left: 300px;
+                margin-bottom: 100px;
+            }
+            .comment-section {
+                margin: 60px 100px;
+                font-family: "Times New Roman", sans-serif;
+            }
+
+            .comment-form {
+                margin-bottom: 40px;
+            }
+
+            .comment-form input,
+            .comment-form textarea {
+                width: 100%;
+                padding: 15px;
+                border: 2px solid #833239;
+                border-radius: 8px;
+                font-size: 16px;
+                margin-bottom: 15px;
+                resize: vertical;
+                box-sizing: border-box;
+            }
+
+            .comment-form textarea {
+                min-height: 120px;
+            }
+
+            .comment-form button {
+                background-color: #833239;
+                color: white;
+                padding: 12px 25px;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 18px;
+                transition: background-color 0.3s;
+            }
+
+            .comment-form button:hover {
+                background-color: #6a282e;
+            }
+
+            .comments-list {
+                margin-top: 30px;
+            }
+
+            .comment-item {
+                border-left: 3px solid #833239;
+                padding-left: 20px;
+                margin-bottom: 25px;
+                padding-bottom: 20px;
+                border-bottom: 1px solid #eee;
+            }
+
+            .comment-author {
+                font-weight: bold;
+                color: #833239;
+                margin-bottom: 5px;
+            }
+
+            .comment-date {
+                font-size: 14px;
+                color: #888;
+                margin-bottom: 10px;
+            }
+
+            .comment-content {
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- 头部区域 -->
+        <header>
+            <div class="firstMenu">
+        <ul class="menu-one">
+             <li class="menu">
+            <img src="../picture/logo.jpg" height="60" width="120"/>
+             </li>
+            <li class="menu">
+                <a style="color: white;font-size: 20px" href="#">traditional style</a>
+                <ul class="menu-two">
+                   <li><a style="color: white;font-size: 20px" href="journeyToTheWest.html">Journey To The West</a></li>
+                   <li><a style="color: white;font-size: 20px" href="newYearSpecialEdtion.html">New Year Painting Doll</a></li>
+                   <li><a style="color: white;font-size: 20px" href="zodiac.html"> 12 Zodiac </a></li>
+                </ul>
+            </li>
+            <li class="menu">
+                <a style="color: white;font-size: 20px" href="#">Reconstruction</a>
+                <ul class="menu-two">
+                    <li><a style="color: white;font-size: 20px" href="blogger1.html">FenWan Chen</a></li>
+                    <li><a style="color: white;font-size: 20px" href="blogger2.html">Lucky Studio</a></li>
+                </ul>
+            </li>
+            <li class="menu">
+                <a style="color: white;font-size: 20px" href="product.html">Home</a>
+            </li>
+
+        </ul>
+    </div>
+        </header>
+
+
+        <!-- banner区域 -->
+        <div class="banner">
+            <div></div>
+        </div>
+
+
+        <h1 style="color: #8a3131;text-align: center;position: relative;margin-top: 60px">| Paper Cuttings studio on
+            CCTV |</h1>
+        <div class="intro">
+
+            <h2>The novel mainly tells the story of Sun Wukong, who was born, followed Bodhi Patriarch to learn art and
+                caused chaos in the Heavenly Palace. He met Tang Monk, Zhu Bajie, Sha Monk, and White Dragon Horse,
+                traveled westward to obtain Buddhist scriptures, went through hardships,conquered demons and monsters,
+                experienced 981 difficulties, and finally arrived in the Western Heaven to meet the Buddha, and finally
+                the Five Saints came true. The novel is based on the historical event of Xuanzang's pilgrimage, and
+                through the author's artistic processing, it deeply depicts the social and living conditions during the
+                Ming Dynasty.</h2>
+
+        </div>
+
+        <div class="img">
+            <img src="../picture/blogger(2).jpg" height="390" width="589"/>
+        </div>
+
+        <h1 style="color: #833239;margin-left: 100px;font-size: 30px">
+            Only Customized
+        </h1>
+        <h2 style="margin-left: 100px;">
+            Review of Previous Works
+        </h2>
+
+        <div class="container">
+            <a class="block contact1"></a>
+            <a class="block contact2"></a>
+            <a class="block contact3"></a>
+        </div>
+
+        <h1 style="color: #833239;margin-top: 60px;margin-bottom: 20px;margin-left: 100px">Author's message</h1>
+        <div style="font-size: 10px;margin-left: 90px;margin-top: 20px;margin-right: 90px">
+            <h2 style="margin-bottom: 40px">This white cat is called Star ✨ Very well behaved and face saving. I like
+                green plants like onions and play with ropes. I added a purple ribbon to it to play with
+                Did you notice! I added two stars to its legs</h2>
+            <h2 style="margin-bottom: 40px">It's called Little Orange, with a thick tail and fishbone patterns on its
+                body. Because it was adopted in autumn, the background is made in autumn. If you like toys, make a
+                woolen ball for it</h2>
+            <h2 style="margin-bottom: 40px"> Imagine a cat as a mythical creature nestled between mountains and rivers.
+                In the end, this rock has about 70 layers, and the back panel is almost stuck</h2>
+        </div>
+
+        <h1 style="color: #833239;margin-top: 60px;margin-bottom: 20px;margin-left: 100px">Contact the Author</h1>
+        <h2 style=" margin-bottom: 20px;margin-left: 100px;font-size: 20px">Xiaohongshu:2676826103</h2>
+
+        <!-- 评论区 -->
+        <div class="comment-section">
+            <h1 style="color: #833239;margin-bottom: 30px; font-family:'Bookman Old Style',sans-serif; ">leave your comment</h1>
+
+            <div class="comment-form">
+                <input type="text" id="name-input" placeholder="Your Name" required>
+                <textarea id="comment-input" placeholder="Please enter your comment here..." required></textarea>
+                <button onclick="submitComment()">Submit Comment</button>
+            </div>
+
+            <div class="comments-list" id="comments-container">
+                <!-- 评论将通过JavaScript动态添加到这里 -->
+            </div>
+        </div>
+
+        <script>
+            // 评论数据存储
+            let comments = [];
+
+            // 加载已保存的评论
+            function loadComments() {
+                const savedComments = localStorage.getItem('englishComments');
+                if (savedComments) {
+                    comments = JSON.parse(savedComments);
+                    renderComments();
+                }
+            }
+
+            // 提交评论
+            function submitComment() {
+                const nameInput = document.getElementById('name-input');
+                const commentInput = document.getElementById('comment-input');
+                const name = nameInput.value.trim();
+                const commentText = commentInput.value.trim();
+
+                if (name === '' || commentText === '') {
+                    alert('Please enter your name and comment!');
+                    return;
+                }
+
+                // 创建新评论对象
+                const newComment = {
+                    id: Date.now(),
+                    name: name,
+                    content: commentText,
+                    date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+                };
+
+                // 添加到评论数组
+                comments.unshift(newComment);
+
+                // 保存到本地存储
+                localStorage.setItem('englishComments', JSON.stringify(comments));
+
+                // 清空输入框
+                nameInput.value = '';
+                commentInput.value = '';
+
+                // 重新展示评论
+                renderComments();
+            }
+
+            // 评论
+            function renderComments() {
+                const commentsContainer = document.getElementById('comments-container');
+                commentsContainer.innerHTML = '';
+
+                if (comments.length === 0) {
+                    commentsContainer.innerHTML = '<p class="comment-item">No comments yet. Be the first to leave a comment!</p>';
+                    return;
+                }
+
+                comments.forEach(comment => {
+                    const commentElement = document.createElement('div');
+                    commentElement.className = 'comment-item';
+                    commentElement.innerHTML = `
+                        <div class="comment-author">${comment.name}</div>
+                        <div class="comment-date">${comment.date}</div>
+                        <div class="comment-content">${comment.content}</div>
+                    `;
+                    commentsContainer.appendChild(commentElement);
+                });
+            }
+
+            // 页面加载时加载评论
+            window.addEventListener('DOMContentLoaded', loadComments);
+        </script>
+    </body>
+
+</html>

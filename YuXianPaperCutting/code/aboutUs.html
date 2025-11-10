@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>about us</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/style3.css">
+    <style>
+        .banner {
+            height: 300px;
+            width: 100%;
+            background-image: url("../picture/social1.jpg");
+            background-size: 100%;
+        }
+        .container {
+            position: relative;
+            text-align: center;
+            margin-top: 20px;
+            margin-left: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .block {
+            font-family: Arial, sans-serif;
+            font-weight: bolder;
+            width: 400px;
+            height: 500px;
+            margin: 30px;
+            display: inline-block;
+            color: #ffffff;
+            text-decoration: none;
+            text-align: center;
+            line-height: 200px;
+            font-size: 1.5em;
+            border-radius: 10px;
+            transition: transform 0.3s;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .contact1 {
+            background-image: url("../picture/fu1.png");
+            background-size: cover;
+        }
+        .contact2 {
+            background-image: url("../picture/paintingDoll.jpg");
+            background-size: cover;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .mobile-menu {
+            display: none;
+            cursor: pointer;
+        }
+        .menu-icon {
+            display: inline-block;
+            cursor: pointer;
+        }
+        .bar1, .bar2, .bar3 {
+            width: 35px;
+            height: 5px;
+            background-color: white;
+            margin: 6px 0;
+            transition: 0.4s;
+        }
+        .change .bar1 {
+            transform: translate(0, 11px) rotate(-45deg);
+        }
+        .change .bar2 {opacity: 0;}
+        .change .bar3 {
+            transform: translate(0, -11px) rotate(45deg);
+        }
+
+        .appointment-section {
+            position: relative;
+            text-align: center;
+            margin: 60px 0;
+        }
+        .appointment-image {
+            width: 100%;
+            height: 500px; /* 增加了图片高度 */
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .appointment-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #8a3131;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 1.8em;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            z-index: 10; /* 确保按钮在图片上方 */
+        }
+        .appointment-button:hover {
+            background-color: #6d2727;
+        }
+        @media screen and (max-width: 768px) {
+            .firstMenu .menu-one .menu {
+                display: none;
+            }
+            .mobile-menu {
+                display: block;
+                float: right;
+                margin-right: 20px;
+                margin-top: 5px;
+            }
+            .responsive .menu-one .menu {
+                display: block;
+                width: 100%;
+            }
+            .banner div {
+                font-size: 30px;
+                left: 50px;
+                top: 100px;
+            }
+            .banner div div {
+                font-size: 12px;
+                margin-left: 0;
+            }
+            .intro {
+                margin: 30px 20px;
+            }
+            img {
+                max-width: 100%;
+                height: auto;
+                margin: 10px 0;
+            }
+            .container {
+                margin-left: 0;
+            }
+            .block {
+                width: 90%;
+                height: 300px;
+                margin: 15px auto;
+            }
+            .appointment-button {
+                font-size: 1.2em;
+                padding: 10px 20px;
+            }
+            .appointment-image {
+                height: 300px; /* 移动设备上减小图片高度 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部区域 -->
+    <header>
+        <div class="firstMenu" id="mainMenu">
+            <div class="mobile-menu" id="mobileMenu">
+                <div class="menu-icon" onclick="toggleMenu()">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+            </div>
+            <ul style="font-family: Arial, sans-serif;" class="menu-one">
+                <li class="menu">
+                    <img src="../picture/logo.jpg" height="60" width="120"/>
+                </li>
+                <li class="menu">
+                    <a style="color: white;font-size: 20px" href="brandCulture.html">Brand</a>
+                </li>
+                <li class="menu">
+                    <a style="color: white;font-size: 20px" href="product.html">Product</a>
+                </li>
+                <li class="menu">
+                    <a style="color: white;font-size: 20px" href="joinUs.html">JoinUs</a>
+                </li>
+                <li class="menu">
+                    <a style="color: white;font-size: 20px" href="aboutUs.html">AboutUs</a>
+                </li>
+                <li class="menu">
+                    <a style="color: white;font-size: 20px" href="index.html">Home</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!-- banner区域 -->
+    <div class="banner">
+        <div>Do you want know <br>Who we are
+            <div>we are the young who want to protect the heritage</div>
+        </div>
+    </div>
+
+    <h1 class="fade-in" style="color: #8a3131;text-align: center;position: relative;margin-top: 60px">| Introduction |</h1>
+    <div class="intro fade-in">
+        <h2> We are too bad at "marketing" ourselves, even though we have traveled mountains and rivers,
+                        covered in dust and wind, and ultimately become a group of behind the scenes angels, and we
+                        have persisted in this for nine years<br>
+                        So this is a late introduction!<br>
+                        We are a group of post-95s who love traditional crafts, with post-95s being the main
+                        focus<br>
+                        Now there are also some post-00s who hope to see their passion and power from our new
+                        perspective<br>
+                        Let me tell you about the birth of a handicraft. The enthusiasm of a team walking on the
+                        road has also injected the expectations of craftsmen, hoping to present it to the public<br>
+                        Old craftsmanship can also be very fashionable<br>
+                        Welcome to join our 'Amazing Craftsmen' team as well</h2>
+    </div>
+
+    <div class="fade-in" style="text-align: center;">
+        <img loading="lazy" style="margin-right: 30px;border-radius: 25%" src="../picture/social2.jpg" height="550" width="500" alt="团队工作照"/>
+        <img loading="lazy" style="border-radius: 25%" src="../picture/social1.jpg" height="450" width="500" alt="传统手工艺展示"/>
+    </div>
+
+    <div class="text fade-in">
+        <h1>OUR VOICE</h1>
+        <h2 style="font-size: small;color: #bc4040">we always believe that</h2>
+    </div>
+    <h2 class="intro fade-in">Handicrafts are not expensive works of art, nor are they hidden in museums. They are essential daily necessities for people. So seeing this phenomenon makes me extremely proud and honored。<br>This is the treatment that traditional crafts deserve<br></h2>
+
+    <div class="container fade-in">
+        <a href="#" class="block contact1" style="background-image: url('../picture/fu1.png')">
+            <span style="display: block; margin-top: 150px; line-height: 1.5;">Paper Cutting Exhibition</span>
+        </a>
+        <a href="#" class="block contact2" style="background-image: url('../picture/paintingDoll.jpg')">
+            <span style="display: block; margin-top: 150px; line-height: 1.5;">Traditional Doll Workshop</span>
+        </a>
+    </div>
+
+    <!-- 新增预约版块 -->
+    <div class="appointment-section fade-in">
+        <img src="../picture/appointment.jpg" alt="预约服务背景图" class="appointment-image">
+        <a href="reservation.html" class="appointment-button">We accept appointments！</a>
+    </div>
+
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('mainMenu');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // 移动端菜单切换
+        function toggleMenu() {
+            const menu = document.getElementById('mainMenu');
+            menu.classList.toggle('responsive');
+
+            const icon = document.querySelector('.menu-icon');
+            icon.classList.toggle('change');
+        }
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+
+                    // 如果是移动端，点击后关闭菜单
+                    const menu = document.getElementById('mainMenu');
+                    if (menu.classList.contains('responsive')) {
+                        menu.classList.remove('responsive');
+                        const icon = document.querySelector('.menu-icon');
+                        icon.classList.remove('change');
+                    }
+                }
+            });
+        });
+
+        // 元素进入视口时的淡入动画
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('appear');
+                    fadeInObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        fadeElements.forEach(element => {
+            fadeInObserver.observe(element);
+        });
+    </script>
+</body>
+</html>

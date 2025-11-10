@@ -1,0 +1,132 @@
+          * {
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                background-color: #e1d8db;
+            }
+
+            /* banner区域 */
+
+
+            .banner img {
+                width: 100%;
+                height: 100%;
+            }
+
+            .banner div {
+                font-family: "Sitka Text", sans-serif;
+                font-weight: bolder;
+                position: absolute;
+                top: 130px;
+                left: 220px;
+                color: rgb(255, 255, 255);
+                font-size: 60px;
+            }
+            .banner div div{
+                font-size: 15px;
+                margin-top: 20px;
+                margin-left: -220px;
+            }
+
+            table {
+                border-collapse: collapse; /* 合并边框，但由于我们设置边框为none，所以这里其实没影响 */
+                width: 100%; /* 使表格宽度占满容器 */
+                margin-top: 20px;
+                line-height: 2.5;
+            }
+
+            td {
+                border: none; /* 移除单元格边框 */
+                vertical-align: top; /* 使单元格内容顶部对齐 */
+                padding: 30px;
+                margin-left: 10px;
+                /* 添加一些内边距 */
+            }
+
+            img {
+                max-width: 100%; /* 确保图片不会超出单元格宽度 */
+                height: auto; /* 保持图片比例 */
+            }
+
+            .firstMenu {
+                width: 100%;
+                height: 50px;
+                background-color: #2f1717;
+            }
+
+            .firstMenu .menu-one .menu {
+                float: left;
+                text-align: center;
+                width: 100px;
+            }
+
+            .firstMenu .menu-one .menu .menu-two { /*正常情况下二级菜单不显示*/
+                display: none;
+            }
+
+            .firstMenu .menu-one .menu:hover .menu-two {
+                /*当鼠标悬浮在对应的一级菜单时，显示内容*/
+                display: block;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+
+
+
+            .block:hover {
+                transform: scale(1.1);
+            }
+
+            /*When hovering over an element with class="block", scale the element to YuXianPaperCutting.YuXianPaperCutting times its original size. */
+
+            .contact1 {
+                background-image: url("../../picture/fu1.png");
+                background-size: 100%;
+            }
+
+            .contact2 {
+                background-image: url("../../picture/paintingDoll.jpg");
+                background-size: 100%;
+            }
+
+            a:hover {
+                filter: drop-shadow(5px 5px #222222);
+            }
+
+
+
+            ul {
+                /*去除内外边距*/
+                margin: 0;
+                padding: 8px;
+            }
+
+            li {
+                /*去除开头的黑点*/
+                list-style: none;
+                background-color: #2f1717;
+            }
+
+            a {
+                text-decoration: none;
+                /*去除文字下划线*/
+                line-height: 36px;
+            }
+            .intro {
+                position: relative;
+                margin: 60px 200px 90px 200px;
+                text-align: center;
+                font-size: 15px;
+                font-family: "Times New Roman", sans-serif;
+                color: rgb(51, 51, 66);
+            }
+            .text{
+                margin-top: 80px;
+                text-align: center;
+                color: black;
+            }

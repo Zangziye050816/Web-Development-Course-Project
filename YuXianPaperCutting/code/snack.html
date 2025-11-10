@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025 Yuxian Paper Cuttings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            box-sizing: border-box;
+            width: 100%;
+            height: 70px;
+            padding: 0 100px;
+            color: #fff;
+            background-color: #2f1717;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .header-left span {
+            margin-right: 20px;
+        }
+
+        .logo {
+            width: 150px;
+            height: 60px;
+            line-height: 60px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            background-size: 100%;
+        }
+
+        .container {
+            width: 100%;
+            display: flex;
+        }
+
+        .container > div {
+            width: 50%;
+            height: 1000px;
+        }
+
+        .banner > img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .info {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 50px 50px 0;
+        }
+
+        .info > h1 {
+            font-size: 40px;
+            margin-bottom: 30px;
+        }
+
+        .info > h2 {
+            font-size: 40px;
+            color: #2f1717;
+            margin-bottom: 30px;
+        }
+
+        .number {
+            display: flex;
+        }
+
+        .number > div:nth-child(1) {
+            background-color: #F9F6F1;
+        }
+
+        .number > div:nth-child(1) > span {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+        }
+
+        .number > div:nth-child(1) > span:first-child,
+        .number > div:nth-child(1) > span:last-child {
+            cursor: pointer;
+        }
+
+        .number > div:nth-child(2) > button {
+            border: none;
+            background-color: #e68e46;
+            margin-left: 50px;
+            height: 60px;
+            width: 150px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .type {
+            width: 100%;
+            margin-top: 50px;
+        }
+
+        .type-title {
+            display: flex;
+        }
+
+        .type-title > span {
+            display: flex;
+            margin-right: 50px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .type-content {
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .type-content > div {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .type-content > div > img {
+            width: 48%;
+            height: auto;
+        }
+
+        .type-content > p {
+            width: 100%;
+            word-wrap: break-word;
+            line-height: 1.5;
+        }
+
+        .product {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 100px 100px 0;
+        }
+
+        .product > h1 {
+            font-size: 40px;
+            margin-bottom: 50px;
+        }
+
+        .product-list {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .product-list > div {
+            width: 30%;
+        }
+
+        .product-list > div > img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product-list > div > p {
+            margin-top: 30px;
+        }
+
+        .product-list > div > p:last-child {
+            color: #ac4343;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        a1 {
+            text-decoration: none;
+            color: black;
+        }
+
+        /* 购物车相关样式 */
+        .cart-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 100px;
+            box-sizing: border-box;
+        }
+
+        .cart-header {
+            font-size: 30px;
+            color: #2f1717;
+            margin-bottom: 30px;
+        }
+
+        .cart-item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        .cart-item-image {
+            width: 200px;
+            height: auto;
+        }
+
+        .cart-item-info {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .cart-item-price {
+            font-size: 18px;
+            color: #ac4343;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cart-item-quantity span {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ddd;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+        }
+
+        .cart-total {
+            text-align: right;
+            font-size: 22px;
+            margin-top: 30px;
+        }
+
+        .checkout-button {
+            background-color: #e68e46;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* 导航标签样式 */
+        .tabs {
+            display: flex;
+            padding: 20px 100px;
+            background-color: #f5f5f5;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .tab.active {
+            color: #2f1717;
+            border-bottom: 2px solid #2f1717;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <span><a href="product.html" id="back-btn"> | back |</a></span>
+        </div>
+        <div class="logo">
+            <img src="../picture/logo.jpg" alt="Shop Logo">
+        </div>
+        <div class="header-right">
+            <span id="cart-count" style="cursor: pointer;">Cart (0)</span>
+        </div>
+    </header>
+
+    <!-- 导航标签 -->
+    <div class="tabs">
+        <div class="tab active" data-tab="product">Product</div>
+        <div class="tab" data-tab="cart">Shopping Cart</div>
+    </div>
+
+    <!-- 产品内容 -->
+    <div class="tab-content active" id="product-tab">
+        <div class="container">
+            <div class="banner">
+                <img src="../picture/snack1.jpg" alt="2025 Yuxian Paper Cuttings">
+            </div>
+            <div class="info">
+                <h1>2025 Yuxian Paper Cuttings Spring Festival mascot with snakes</h1>
+                <h2>$17.00</h2>
+                <div class="number">
+                    <div>
+                        <span id="decrease">-</span>
+                        <span id="quantity">0</span>
+                        <span id="increase">+</span>
+                    </div>
+                    <div>
+                        <button id="add-to-cart">ADD TO CART</button>
+                    </div>
+                </div>
+                <div class="type">
+                    <div class="type-title">
+                        <span>Description</span>
+                        <span>Additional information</span>
+                        <span>Reviews</span>
+                    </div>
+                    <div class="type-content">
+                        <div>
+                            <img src="../picture/snack2.jpg" alt="Paper Cuttings Example 1">
+                            <img src="../picture/made2.jpg" alt="Paper Cuttings Example 2">
+                        </div>
+                        <p style="font-size:15px;font-family:'Times New Roman',sans-serif">The Year of the Snake 2025 is
+                            coming soon
+                            For this reason, we also launched the Paper Cuttings of the Year of the Snake,<br> "Where
+                            there is a snake, there is a gain"
+                            <br>There's no need to give up anything
+                            Where there are snakes, there are
+                            Full of blessings in 2025
+                        </p>
+                        <p style="display: none;font-family: 'Times New Roman',sans-serif">This Paper Cuttings was
+                            carved and signed by Zhou Yongsheng, <br>the inheritor of Paper Cuttings intangible cultural
+                            heritage in Yuxian County
+                            In traditional Chinese culture, snakes symbolize mystery, wisdom, and charm. People born in
+                            the Year of the Snake are often considered intelligent, witty, flexible, and creative </p>
+                        <p style="display: none;font-family: 'Times New Roman',sans-serif">This Paper Cuttings adopts
+                            GCF certification mounting process. We have also printed the name of the work on the
+                            cardboard.<br> Those who like it can take it home!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product">
+            <h1>Related Products</h1>
+            <h1 style="color: #b54d4d">assume you like</h1>
+            <div class="product-list">
+                <div>
+                    <img src="../picture/loong1.jpg" alt="Dragon Paper Cuttings">
+                    <p>LOONG</p>
+                    <p>$17</p>
+                </div>
+                <div>
+                    <img src="../picture/snack2.jpg" alt="Snake Paper Cuttings">
+                    <p>SNAKE</p>
+                    <p>$17</p>
+                </div>
+                <div>
+                    <img src="../picture/horse2.png" alt="Horse Paper Cuttings">
+                    <p>HORSE</p>
+                    <p>$17</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 购物车内容 -->
+    <div class="tab-content" id="cart-tab">
+        <div class="cart-container">
+            <h1 class="cart-header">Shopping Cart</h1>
+
+            <div id="cart-items-container">
+                <p>Your cart is empty.</p>
+            </div>
+
+            <div class="cart-total">
+                Total: <span id="total-price">$0.00</span>
+            </div>
+            <button class="checkout-button">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // 获取元素
+            const quantitySpan = document.querySelector('#quantity');
+            const addToCartButton = document.querySelector('#add-to-cart');
+            const increaseButton = document.querySelector('#increase');
+            const decreaseButton = document.querySelector('#decrease');
+            const typeSpans = document.querySelectorAll('.type-title span');
+            const typeContents = document.querySelectorAll('.type-content p');
+            const cartItemsContainer = document.getElementById('cart-items-container');
+            const totalPriceElement = document.getElementById('total-price');
+            const cartCountElement = document.getElementById('cart-count');
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            const backBtn = document.getElementById('back-btn');
+
+            // 初始化数量
+            let quantity = 0;
+            // 获取购物车数据（若无则初始化空数组）
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+            // 更新数量显示
+            function updateQuantity() {
+                quantitySpan.textContent = quantity;
+            }
+
+            // 增加数量
+            function increaseQuantity() {
+                quantity++;
+                updateQuantity();
+            }
+
+            // 减少数量
+            function decreaseQuantity() {
+                if (quantity > 0) {
+                    quantity--;
+                    updateQuantity();
+                }
+            }
+
+            // 更新购物车计数
+            function updateCartCount() {
+                const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+                cartCountElement.textContent = `Cart (${totalItems})`;
+            }
+
+            // 添加到购物车
+            function addToCart() {
+                if (quantity <= 0) return; // 数量为0时不添加
+
+                // 构建商品信息
+                const product = {
+                    id: 'snake-mascot-2025',
+                    name: '2025 Yuxian Paper Cuttings Spring Festival mascot with snakes',
+                    price: 17.00,
+                    quantity: quantity,
+                    image:'../picture/snack1.jpg'
+                };
+
+                // 检查购物车中是否已有该商品
+                const existingItem = cartItems.find(item => item.id === product.id);
+                if (existingItem) {
+                    existingItem.quantity += product.quantity; // 数量累加
+                } else {
+                    cartItems.push(product); // 新增商品
+                }
+
+                // 存储购物车数据
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+                // 更新购物车计数
+                updateCartCount();
+
+                // 切换到购物车标签
+                showTab('cart');
+
+                // 重置数量
+                quantity = 0;
+                updateQuantity();
+            }
+
+            // 渲染购物车项目
+            function renderCartItems() {
+                if (cartItems.length === 0) {
+                    cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+                    totalPriceElement.textContent = '$0.00';
+                    return;
+                }
+
+                let html = '';
+                let total = 0;
+
+                cartItems.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+
+                    html += `
+                        <div class="cart-item">
+                            <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                            <div class="cart-item-info">
+                                <div>
+                                    <h3>${item.name}</h3>
+                                    <p class="cart-item-price">$${item.price.toFixed(2)} each</p>
+                                </div>
+                                <div class="cart-item-quantity">
+                                    <span class="decrease" data-id="${item.id}">-</span>
+                                    <span>${item.quantity}</span>
+                                    <span class="increase" data-id="${item.id}">+</span>
+                                    <span class="remove" data-id="${item.id}">×</span>
+                                </div>
+                                <div>
+                                    <p class="cart-item-price">Subtotal: $${itemTotal.toFixed(2)}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                cartItemsContainer.innerHTML = html;
+                totalPriceElement.textContent = `$${total.toFixed(2)}`;
+            }
+
+            // 切换标签
+            function showTab(tabName) {
+                tabs.forEach(tab => {
+                    tab.classList.toggle('active', tab.dataset.tab === tabName);
+                });
+
+                tabContents.forEach(content => {
+                    content.classList.toggle('active', content.id === `${tabName}-tab`);
+                });
+            }
+
+            // 绑定事件
+            addToCartButton.addEventListener('click', addToCart);
+            increaseButton.addEventListener('click', increaseQuantity);
+            decreaseButton.addEventListener('click', decreaseQuantity);
+
+            // 类型切换功能
+            typeSpans.forEach((span, index) => {
+                span.addEventListener('click', () => {
+                    // 重置所有span颜色
+                    typeSpans.forEach(s => s.style.color = '');
+                    // 重置所有p标签显示
+                    typeContents.forEach(p => p.style.display = 'none');
+
+                    // 设置当前span颜色
+                    span.style.color = '#2f504c';
+                    // 显示对应的p标签
+                    if (index < typeContents.length) {
+                        typeContents[index].style.display = 'block';
+                    }
+                });
+            });
+
+            // 购物车项目数量增减
+            cartItemsContainer.addEventListener('click', (e) => {
+                if (e.target.classList.contains('increase') || e.target.classList.contains('decrease') || e.target.classList.contains('remove')) {
+                    const id = e.target.dataset.id;
+                    const itemIndex = cartItems.findIndex(item => item.id === id);
+
+                    if (itemIndex === -1) return;
+
+                    if (e.target.classList.contains('increase')) {
+                        cartItems[itemIndex].quantity++;
+                    } else if (e.target.classList.contains('decrease')) {
+                        if (cartItems[itemIndex].quantity > 1) {
+                            cartItems[itemIndex].quantity--;
+                        } else {
+                            cartItems.splice(itemIndex, 1);
+                        }
+                    } else if (e.target.classList.contains('remove')) {
+                        cartItems.splice(itemIndex, 1);
+                    }
+
+                    // 保存更新后的数据
+                    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+                    // 重新渲染购物车
+                    renderCartItems();
+                    updateCartCount();
+                }
+            });
+
+            // 标签切换事件
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    showTab(tab.dataset.tab);
+                });
+            });
+
+            // 返回按钮
+            backBtn.addEventListener('click', () => {
+                showTab('product');
+            });
+
+            // 初始化购物车计数和内容
+            updateCartCount();
+            renderCartItems();
+        });
+    </script>
+</body>
+</html>

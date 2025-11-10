@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuxian Paper Cuttings</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #FBF8F3;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* 导航栏样式 */
+        header {
+            background-color: #2f1717;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 60px;
+        }
+
+        .logo img {
+            height: 100%;
+            width: auto;
+        }
+
+        .nav {
+            background-color: #2f1717;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-around;
+            font-size: 1.2rem;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none; /* 移除链接下划线 */
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .nav a:hover,
+        .nav a:focus {
+            background-color: rgba(255, 255, 255, 0.1);
+            outline: none;
+        }
+
+        /* 横幅样式 */
+        .banner {
+            position: relative;
+            height: 50vh;
+            min-height: 300px;
+            overflow: hidden;
+        }
+
+        .banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 内容区域 */
+        .content {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* 三图布局 */
+        .threeImg {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .threeImg a {
+            display: block;
+            height: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none; /* 移除链接下划线 */
+        }
+
+        .threeImg a:hover,
+        .threeImg a:focus {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            outline: none;
+        }
+
+        .block-large {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 1.5rem;
+            color: black;
+        }
+
+        .block-small {
+            height: 140px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 1.5rem;
+            color: white;
+        }
+
+        /* 产品类型展示 */
+        .type {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .type h3 {
+            color: #4a1206;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .type h4 {
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        /* 轮播图样式 */
+        .carousel {
+            position: relative;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-slides {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            text-align: left;
+        }
+
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.3);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 10;
+        }
+
+        .carousel-control:hover {
+            background-color: rgba(0,0,0,0.6);
+        }
+
+        .carousel-control.prev {
+            left: 1rem;
+        }
+
+        .carousel-control.next {
+            right: 1rem;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .carousel-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .carousel-indicator.active {
+            background-color: white;
+        }
+
+        .exhibition {
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .exhibition-carousel {
+            position: relative;
+            width: 80%;
+            max-width: 600px;
+            margin: 1rem auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .exhibition-slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .exhibition-slide {
+            min-width: 100%;
+        }
+
+        .exhibition-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .exhibition-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .exhibition-control.prev {
+            left: 1rem;
+        }
+
+        .exhibition-control.next {
+            right: 1rem;
+        }
+
+        .exhibition-indicators {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .exhibition-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+        }
+
+        .exhibition-indicator.active {
+            background-color: white;
+        }
+
+        .booking-count {
+
+            font-size: 2rem;
+            font-weight: 600;
+            margin: 3rem 0;
+            color: #6d2727;
+        }
+
+        /* 响应式布局 */
+        @media (min-width: 768px) {
+            .threeImg {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .threeImg > div {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header>
+        <div class="header-left"></div>
+        <div class="logo">
+            <img src="../picture/logo.jpg" alt="Yuxian Paper Cuttings Logo" />
+        </div>
+        <div class="header-right"></div>
+    </header>
+
+    <!-- 横幅 -->
+    <div class="banner">
+        <img src="../picture/head.png" alt="Yuxian Paper Cuttings Banner" />
+    </div>
+
+    <!-- 导航菜单 -->
+    <div class="nav">
+        <a href="brandCulture.html">Brand Culture</a>
+        <a href="product.html">Product</a>
+        <a href="joinUs.html">Join Us</a>
+        <a href="aboutUs.html">About Us</a>
+    </div>
+
+    <!-- 主要内容 -->
+    <div class="content">
+        <!-- 三图区域 -->
+        <div class="threeImg">
+            <a href="brandCulture.html">
+                <div class="block-large" style="background-image: url('../picture/block1.jpg')">
+                    <p style="font-size: 1.8rem; font-weight: 600;">Brand Culture</p>
+                    <p style="font-size: 1rem; margin-top: 0.5rem;">Discover the rich heritage of Yuxian paper cutting</p>
+                </div>
+            </a>
+            <div>
+                <a href="joinUs.html">
+                    <div class="block-small" style="background-color: #887165">
+                        <p style="font-size: 1.5rem; font-weight: 600;">Join Us</p>
+                        <p style="font-size: 0.9rem;">Become a member of our artisan community</p>
+                    </div>
+                </a>
+                <a href="product.html">
+                    <div class="block-small" style="background-color: #887165">
+                        <p style="font-size: 1.5rem; font-weight: 600;">Product Introduction</p>
+                        <p style="font-size: 0.9rem;">Explore our exquisite paper cutting collection</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 产品类型展示 - 轮播图 -->
+        <div class="type">
+            <h3>ASSUME YOU LIKE</h3>
+            <h4>Popular Products</h4>
+            <div class="carousel">
+                <div class="carousel-slides" id="carouselSlides">
+                    <div class="carousel-slide">
+                        <img src="../picture/loong2.jpg" alt="Loong Paper Cutting">
+                        <div class="carousel-overlay">
+                            <p style="font-size: 1.8rem; font-weight: 600;">LOONG</p>
+                            <p>Sold: 200+ | $15.00</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../picture/tiger2.jpg" alt="Tiger Paper Cutting">
+                        <div class="carousel-overlay">
+                            <p style="font-size: 1.8rem; font-weight: 600;">TIGER</p>
+                            <p>Sold: 200+ | $15.00</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../picture/horse1.jpg" alt="Horse Paper Cutting">
+                        <div class="carousel-overlay">
+                            <p style="font-size: 1.8rem; font-weight: 600;">HORSE</p>
+                            <p>Sold: 200+ | $15.00</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-control prev" onclick="prevSlide()"><i>&lt;</i></button>
+                <button class="carousel-control next" onclick="nextSlide()"><i>&gt;</i></button>
+
+                <div class="carousel-indicators" id="carouselIndicators">
+                    <button class="carousel-indicator active" onclick="goToSlide(0)"></button>
+                    <button class="carousel-indicator" onclick="goToSlide(1)"></button>
+                    <button class="carousel-indicator" onclick="goToSlide(2)"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 最近的展览板块 -->
+    <div class="exhibition">
+        <h3 style="color: #4a1206; font-size: 1.8rem; margin-bottom: 1rem;">Recent Exhibition</h3>
+
+        <div class="exhibition-carousel" id="exhibitionCarousel">
+            <div class="exhibition-slides" id="exhibitionSlides">
+                <div class="exhibition-slide">
+                    <a href="booking.html" target="_blank">
+                        <img src="../picture/exhibition1.jpg" alt="Exhibition 1" >
+                    </a>
+                </div>
+                <div class="exhibition-slide">
+                    <a href="booking.html" target="_blank">
+                        <img src="../picture/exhibition2.jpg" alt="Exhibition 2" >
+                    </a>
+                </div>
+            </div>
+
+            <button class="exhibition-control prev" onclick="prevExhibitionSlide()"><i>&lt;</i></button>
+            <button class="exhibition-control next" onclick="nextExhibitionSlide()"><i>&gt;</i></button>
+
+            <div class="exhibition-indicators" id="exhibitionIndicators">
+                <button class="exhibition-indicator active" onclick="goToExhibitionSlide(0)"></button>
+                <button class="exhibition-indicator" onclick="goToExhibitionSlide(1)"></button>
+            </div>
+        </div>
+
+        <div class="booking-count" id="bookingCount">Current Bookings: 0</div>
+    </div>
+
+    <!-- JavaScript功能 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {//确保 HTML 完全加载后再执行 JavaScript
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {//当页面滚动超过 50
+                    header.classList.add('scrolled');
+                    header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';//导航栏透明
+                } else {
+                    header.classList.remove('scrolled');
+                    header.style.boxShadow = 'none';//50以内不发生变化
+                }
+            });
+
+            // 初始化产品轮播图
+            initCarousel();
+
+            //初始化展览轮播图
+            initExhibitionCarousel();
+
+            //初始化预约计数
+            initBookingCount();
+        });
+
+        // 产品轮播图功能
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        const slidesContainer = document.getElementById('carouselSlides');
+        let slideInterval;
+
+        function initCarousel() {
+            // 设置轮播图宽度
+            updateSlideWidth();
+
+            // 开始自动播放
+            startSlideTimer();
+
+            // 窗口大小变化时更新轮播图宽度
+            window.addEventListener('resize', updateSlideWidth);
+        }
+
+        function updateSlideWidth() {
+            const slideWidth = slides[0].offsetWidth;
+            slides.forEach(slide => {
+                slide.style.width = `${slideWidth}px`;
+            });
+        }
+
+        function startSlideTimer() {
+            slideInterval = setInterval(nextSlide, 5000); // 每5秒切换一次
+        }
+
+        function stopSlideTimer() {
+            clearInterval(slideInterval);
+        }
+
+        function nextSlide() {
+            goToSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            goToSlide(currentSlide - 1);
+        }
+
+        function goToSlide(index) {
+            // 计算新的索引
+            if (index >= slides.length) {
+                index = 0;
+            } else if (index < 0) {
+                index = slides.length - 1;
+            }
+
+            // 停止当前计时器并重新开始
+            stopSlideTimer();
+            startSlideTimer();
+
+            // 更新当前幻灯片
+            currentSlide = index;
+
+            // 移动轮播图
+            const slideWidth = slides[0].offsetWidth;
+            slidesContainer.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+
+            // 更新指示器
+            indicators.forEach((indicator, i) => {
+                if (i === currentSlide) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+
+        // 为轮播图添加鼠标悬停暂停功能
+        const carousel = document.querySelector('.carousel');
+        if (carousel) {
+            carousel.addEventListener('mouseenter', stopSlideTimer);
+            carousel.addEventListener('mouseleave', startSlideTimer);
+        }
+
+        // 展览轮播图功能
+        let currentExhibitionSlide = 0;
+        const exhibitionSlides = document.querySelectorAll('.exhibition-slide');
+        const exhibitionIndicators = document.querySelectorAll('.exhibition-indicator');
+        const exhibitionSlidesContainer = document.getElementById('exhibitionSlides');
+
+        // 初始化展览轮播图
+        function initExhibitionCarousel() {
+            // 自动播放
+            setInterval(nextExhibitionSlide, 5000);
+        }
+
+        function nextExhibitionSlide() {
+            currentExhibitionSlide = (currentExhibitionSlide + 1) % exhibitionSlides.length;
+            updateExhibitionSlide();
+        }
+
+        function prevExhibitionSlide() {
+            currentExhibitionSlide = (currentExhibitionSlide - 1 + exhibitionSlides.length) % exhibitionSlides.length;
+            updateExhibitionSlide();
+        }
+
+        function goToExhibitionSlide(index) {
+            currentExhibitionSlide = index;
+            updateExhibitionSlide();
+        }
+
+        function updateExhibitionSlide() {
+            // 移动轮播图
+            exhibitionSlidesContainer.style.transform = `translateX(-${currentExhibitionSlide * 100}%)`;
+
+            // 更新指示器
+            exhibitionIndicators.forEach((indicator, i) => {
+                if (i === currentExhibitionSlide) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+
+        // 预约计数功能
+        let currentBookings = 0;
+
+        function initBookingCount() {
+            // 初始化时从本地存储获取预约人数）
+            if (localStorage.getItem('bookingCount')) {
+                currentBookings = parseInt(localStorage.getItem('bookingCount'));
+            }
+            updateBookingCount();
+
+            // 点击图片时模拟预约成功
+            document.querySelectorAll('.exhibition-slide a').forEach(link => {
+                link.addEventListener('click', function() {
+                    // 模拟预约成功后人数增加
+                    currentBookings++;
+                    localStorage.setItem('bookingCount', currentBookings);
+                    updateBookingCount();
+
+                    // 提示预约成功
+                    alert('Booking successful! Your reservation has been recorded.');
+                });
+            });
+        }
+
+        function updateBookingCount() {
+            document.getElementById('bookingCount').textContent = `Current Bookings: ${currentBookings}`;
+        }
+    </script>
+</body>
+</html>

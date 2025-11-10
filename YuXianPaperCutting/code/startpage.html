@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Page</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            background-image: url("../picture/startPage.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+            overflow: hidden;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .jump-button {
+            padding: 20px 60px;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: bolder;
+            cursor: pointer;
+            background-color: rgba(143, 140, 140, 0.8);
+            color: #040000;
+            border: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-align: center;
+            line-height: 1.4;
+            max-width: 90%;
+            transform: translateX(300px);
+            outline: none;
+            z-index: 10;
+        }
+
+        .jump-button:hover,
+        .jump-button:focus {
+            background-color: rgba(72, 73, 76, 0.9);
+            transform: translate(300px, -2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .jump-button.loading {
+            cursor: progress;
+            background-color: rgba(50, 50, 50, 0.8);
+            color: #ccc;
+        }
+
+        .jump-button.loading::after {
+            content: '...';
+            display: inline-block;
+            margin-left: 8px;
+            animation: dotPulse 1.5s infinite;
+        }
+
+        @keyframes dotPulse {
+            0%, 100% { opacity: 0; }
+            33% { opacity: 1; }
+        }
+
+        .floating-image {
+            position: absolute;
+            top: 30%;
+            left: -250px; /* 调整初始位置以匹配图片宽度 */
+            width: 500px; /* 增大图片宽度 */
+            height: auto;
+            opacity: 0.7;
+            z-index: 1;
+            animation: floatAcross 25s linear infinite; /* 适当增加动画时间以匹配更大的图片 */
+        }
+
+        @keyframes floatAcross {
+            0% {
+                transform: translateX(-250px); /* 调整起始位置 */
+            }
+            100% {
+                transform: translateX(calc(100vw + 250px)); /* 调整结束位置 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <img id="floatingImage" class="floating-image" src="../picture/float.png" alt="Floating decorative image">
+
+    <button id="startButton" class="jump-button">
+        Embark on the <br>journey of craftsmen
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {// ID 选择器获取
+            const startButton = document.getElementById('startButton');
+            const floatingImage = document.getElementById('floatingImage');
+
+            startButton.addEventListener('click', () => {
+                startButton.classList.add('loading');//添加loading类
+                startButton.disabled = true;//禁用按钮，防止重复点击
+
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);//设置 1.5 秒的定时器，超时后跳转到index.html页面
+            });
+
+            function randomizeFloatingImage() {
+                const randomTop = Math.floor(Math.random() * 50) + 20;//floor向下取整；ramdom随机生成0-1的数字
+                floatingImage.style.top = `${randomTop}vh`;//20%~70%
+
+                const randomDuration = Math.floor(Math.random() * 20) + 20;
+                floatingImage.style.animationDuration = `${randomDuration}s`;//20~40 秒
+
+                const randomDelay = Math.floor(Math.random() * 5);
+                floatingImage.style.animationDelay = `${randomDelay}s`;//0~5 秒
+            }
+            floatingImage.addEventListener('animationiteration', randomizeFloatingImage);
+            //animationiteration事件在每次动画迭代完成后触发，使图片的动画参数（位置、速度）在每次循环后重新随机化，创造出不规则的浮动效果。
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FenWan Chen</title>
+    <link rel="stylesheet" href="CSS/style2.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <style>
+        .banner {
+            height: 300px;
+            width: 100%;
+            background-image: url("../picture/banner3.png");
+            background-size: 100%;
+
+        }
+
+        .banner div {
+            font-family: "Sitka Text", sans-serif;
+            font-weight: bolder;
+            position: absolute;
+            top: 180px;
+            left: 220px;
+            color: rgb(4, 0, 0);
+            font-size: 80px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+            line-height: 2.5;
+        }
+
+        td {
+            border: none;
+            vertical-align: top;
+            padding: 30px;
+            margin-left: 10px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            padding: 10px;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 0px;
+        }
+
+        .block {//为.block 类添加了 transition 属性，使所有变换效果更加平滑
+            font-family: "方正姚体", sans-serif;
+            font-weight: bolder;
+            width: 300px;
+            height: 400px;
+            margin: 30px;
+            display: inline-block;
+            color: #ffffff;
+            text-decoration: none;
+            text-align: center;
+            line-height: 200px;
+            font-size: 1.5em;
+            border-radius: 10px;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .block:hover {
+            transform: translateY(-10px) scale(1.05) rotate(2deg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .block::before {//添加了:before 伪元素实现图片上的光影扫过效果
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                rgba(255,255,255,0) 0%,
+                rgba(255,255,255,0.2) 50%,
+                rgba(255,255,255,0) 100%
+            );
+            transition: all 0.6s ease;
+        }
+
+        .block:hover::before {
+            left: 100%;
+        }
+
+        .contact1 {
+            background-image: url("../picture/molly1.png");
+            background-size: 100%;
+        }
+
+        .contact2 {
+            background-image: url("../picture/molly3.png");
+            background-size: 100%;
+        }
+
+        .contact3 {
+            background-image: url("../picture/molly2.png");
+            background-size: 100%;
+        }
+
+        .container a {
+            background-color: #371313;
+            text-decoration: none;
+            color: #3e1515;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 10px 10px 10px #391515;
+        }
+
+        .container a:hover {
+            filter: drop-shadow(5px 5px #222222);
+        }
+
+        .intro {
+            position: relative;
+            margin: 60px 200px 50px 200px;
+            text-align: center;
+            font-size: 15px;
+            font-family: "Times New Roman", sans-serif;
+            color: rgb(51, 51, 66);
+        }
+
+        .img {
+            position: relative;
+            margin-left: 300px;
+            margin-bottom: 100px;
+        }
+
+        .comment-section {
+            margin: 80px auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .comment-section h2 {
+            color: #8a3131;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .comment-form {
+            margin-bottom: 40px;
+        }
+
+        .comment-form input,
+        .comment-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .comment-form button {
+            background-color: #8a3131;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .comment-form button:hover {
+            background-color: #6d2727;
+        }
+
+        .comments-list {
+            margin-top: 30px;
+        }
+
+        .comment {
+            padding: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comment:last-child {
+            border-bottom: none;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .comment-author {
+            font-weight: bold;
+            color: #8a3131;
+        }
+
+        .comment-date {
+            font-size: 14px;
+            color: #888;
+        }
+
+        .comment-content {
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="firstMenu">
+            <ul class="menu-one">
+                <li class="menu">
+                    <img src="../picture/logo.jpg" height="60" width="120" />
+                </li>
+                <li class="menu">
+                    <a style="color: white;font-size: 20px" href="#">traditional style</a>
+                    <ul class="menu-two">
+                        <li><a style="color: white;font-size: 20px" href="journeyToTheWest.html">Journey To The
+                                    West</a></li>
+                        <li><a style="color: white;font-size: 20px" href="newYearSpecialEdtion.html">New Year
+                                    Painting Doll</a></li>
+                        <li><a style="color: white;font-size: 20px" href="zodiac.html"> 12 Zodiac </a></li>
+                    </ul>
+                </li>
+                <li class="menu">
+                    <a style="color: white;font-size: 20px" href="#">Reconstruction</a>
+                    <ul class="menu-two">
+                        <li><a style="color: white;font-size: 20px" href="blogger1.html">FenWan Chen</a></li>
+                        <li><a style="color: white;font-size: 20px" href="blogger2.html">Lucky Studio</a></li>
+                    </ul>
+                </li>
+                <li class="menu">
+                    <a style="color: white;font-size: 20px" href="product.html">Home</a>
+                </li>
+
+            </ul>
+        </div>
+    </header>
+    <div class="banner">
+        <div></div>
+    </div>
+    <h1 style="color: #8a3131;text-align: center;position: relative;margin-top: 60px">| POPMART & FENWAN |</h1>
+    <div class="intro">
+        <h2>
+            This is the first collaboration between Honmaru and trendy toys
+            During the process, many boundaries were widened and curiosity was satisfied
+            If you also think that Paper Cuttings has more possibilities in Marumaru's hands
+            It's my pleasure 🤗
+            Hope in the Paper Cuttings universe I cut out
+            Space Molly is a brave explorer
+            Grab the star you want ⭐ Boldly move forward
+        </h2>
+    </div>
+
+    <div class="img">
+        <img style="margin-bottom: 50px" src="../picture/blogger1(1).png" height="270" width="630" />
+        <img style="margin-bottom: 50px" src="../picture/blogger1(2).png" height="270" width="630" />
+    </div>
+
+    <h1 style="color: #833239;margin-left: 100px;font-size: 30px">
+        MOLLY|Overview of Styling
+    </h1>
+    <h2 style="margin-left: 100px;">
+        Integration of Paper Cuttings elements
+    </h2>
+
+    <div class="container">
+        <a class="block contact1"></a>
+        <a class="block contact2"></a>
+        <a class="block contact3"></a>
+    </div>
+
+    <h1 style="color: #833239;margin-top: 60px;margin-bottom: 20px;margin-left: 100px">A Creative Little Design⭐</h1>
+    <a class="container" style="background-color: #e07eae;text-decoration: none;font-weight: bolder;color: white;margin-left: 250px"
+        href="show.html">CLICK ME</a>
+    <h1 style="margin-top:100px;color: #833239;text-align: center">HOW TO GET IT</h1>
+    <h2 style=" margin-bottom: 20px;font-size: 20px;text-align: center">Xiaohongshu:陈粉丸<br>Release
+        time:2024.12.20</h2>
+
+    <!-- 评论区 -->
+    <div class="comment-section">
+        <h2 style=" font-family:'Bookman Old Style',sans-serif;">Leave Your Comments</h2>
+
+        <div class="comment-form">
+            <input type="text" id="commentName" placeholder="Your Name" required>
+            <textarea id="commentContent" rows="4" placeholder="Share your thoughts..." required></textarea>
+            <button onclick="addComment()">Submit Comment</button>
+        </div>
+
+        <div class="comments-list" id="commentsList"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadComments();
+        });
+
+        function addComment() {
+            const name = document.getElementById('commentName').value;
+            const content = document.getElementById('commentContent').value;
+
+            if (name && content) {
+                const comment = {
+                    id: Date.now(),
+                    name: name,
+                    content: content,
+                    date: new Date().toLocaleDateString()
+                };
+
+
+                const comments = getComments();
+                comments.push(comment);
+                localStorage.setItem('comments', JSON.stringify(comments));
+
+
+                loadComments();
+
+
+                document.getElementById('commentName').value = '';
+                document.getElementById('commentContent').value = '';
+            }
+        }
+
+        function getComments() {
+            const comments = localStorage.getItem('comments');
+            return comments ? JSON.parse(comments) : [];
+        }
+
+        function loadComments() {
+            const comments = getComments();
+            const commentsList = document.getElementById('commentsList');
+            commentsList.innerHTML = '';
+
+            if (comments.length === 0) {
+                commentsList.innerHTML = '<div class="comment"><p class="comment-content">No comments yet. Be the first to share your thoughts!</p></div>';
+                return;
+            }
+
+            comments.forEach(comment => {
+                const commentElement = document.createElement('div');
+                commentElement.className = 'comment';
+                commentElement.innerHTML = `
+                    <div class="comment-header">
+                        <div class="comment-author">${comment.name}</div>
+                        <div class="comment-date">${comment.date}</div>
+                    </div>
+                    <div class="comment-content">${comment.content}</div>
+                `;
+                commentsList.appendChild(commentElement);
+            });
+        }
+    </script>
+</body>
+
+</html>
